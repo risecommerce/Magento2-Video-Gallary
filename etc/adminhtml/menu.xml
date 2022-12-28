@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Risecommerce_VideoGallery::Video" title="Video Gallery" module="Risecommerce_VideoGallery" sortOrder="51" action="risecommerce_videogallery/video" resource="Risecommerce_VideoGallery::Video"/>
+    </menu>
+</config>

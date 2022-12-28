@@ -1,0 +1,43 @@
+<?php
+/** @var \Risecommerce\VideoGallery\Block\VideoBlock $block */
+$data = $block->getVideoCollection();
+$videoTitle  = $block->getTitle();
+?>
+<div>
+    <?php
+    if ($videoTitle) {
+        ?>
+        <div class="content-heading">
+           <h2 class="title"><?= /* @noEscape */ $videoTitle; ?></h2>
+        </div>
+        <?php
+    }
+    ?>
+    <?php if ($data->count() > 0) { ?>
+        <div class="risecommerce-video-gallery-main">
+            <?php foreach ($data as $_data) : ?>
+            <?php $Id = $_data->getId(); ?>
+            <div class="inline">
+                <?php $video_method = $block->escapeUrl($_data->getVideo_upload_method()); ?>
+                <div class="risecommerce-video-gallery-container">
+                    <?php if ($video_method == 'youtube') { ?>
+                        <iframe width="295" height="169" src="https://www.youtube.com/embed/<?= $block->escapeUrl($_data->getFile()) ?>?rel=0&autoplay=0&modestbranding=1" allowfullscreen class="risecommerce-video-gallery-list"></iframe>
+                    <?php } elseif ($video_method == 'vimeo') { ?>
+                        <iframe width="295" height="169" src='https://player.vimeo.com/video/<?= $block->escapeUrl($_data->getFile()) ?>?&byline=0'  allowfullscreen class="risecommerce-video-gallery-list"></iframe>
+                    <?php } else { ?>
+                            <video width="300" height="150" controls>
+                            <source src="<?= $block->escapeUrl($block->getMediaUrl().$_data->getFile()) ?>" type="video/mp4">
+                        </video>
+                    <?php } ?>
+                </div>
+                <br>
+                <center>
+                    <a href='<?= $block->escapeUrl($block->getBaseUrl()); ?>videogallery/index/videodetail?Id=<?= /* @noEscape */ $Id; ?>'><button class="action submit primary view_more" title="View More" href=""><span>View More</span></button></a>
+                </center>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    <?php } else { ?>
+        <center><h3>No Video Found.</h3></center>
+    <?php } ?>
+</div>

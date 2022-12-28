@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="risecommerce_video_gallery" resource="default" comment="Risecommerce Video Gallery Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+        <column xsi:type="varchar" name="file" nullable="false" length="255" comment="File"/>
+        <column xsi:type="varchar" name="video_upload_method" nullable="false" length="255" comment="Video_upload_method"/>
+        <column xsi:type="mediumtext" name="description" nullable="true"  comment="Description"/>
+        <column xsi:type="int" name="position" padding="10" unsigned="true"  nullable="false" comment="Position"/>
+        <column xsi:type="text" name="stores" nullable="false"  comment="Store Views"/>
+        <column xsi:type="text" name="customer_groups" nullable="false"  comment="Customer Groups"/>
+        <column xsi:type="smallint" name="is_active" padding="10" unsigned="true" default="1" nullable="false" comment="is_active"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true" nullable="false" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <index referenceId="RISECOMMERCE_VIDEO_GALLERY_FILE_TITLE" indexType="fulltext">
+            <column name="file"/>
+            <column name="title"/>
+        </index>
+    </table>
+</schema>

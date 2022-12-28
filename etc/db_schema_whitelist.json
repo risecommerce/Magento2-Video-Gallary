@@ -1,0 +1,23 @@
+{
+    "risecommerce_video_gallery": {
+        "column": {
+            "id": true,
+            "title": true,
+            "file": true,
+            "video_upload_method": true,
+            "description": true,
+            "position": true,
+            "stores": true,
+            "customer_groups": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "RISECOMMERCE_VIDEO_GALLERY_FILE_TITLE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

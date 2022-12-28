@@ -1,0 +1,23 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="risecommerce_videogallery_video_listing_data_source" xsi:type="string">
+                    Risecommerce\VideoGallery\Model\ResourceModel\Video\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Risecommerce\VideoGallery\Model\ResourceModel\Video\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">risecommerce_video_gallery</argument>
+            <argument name="resourceModel" xsi:type="string">Risecommerce\VideoGallery\Model\ResourceModel\Video</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="VideoGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Risecommerce\VideoGallery\Model\Resource\Video\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">VideoGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

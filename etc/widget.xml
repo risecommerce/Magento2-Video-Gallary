@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="Risecommerce\VideoGallery\Block\VideoBlock" id="risecommerce_video_gallery">
+		<label>Video Gallery</label>
+		<description>Risecommerce Video Gallery</description>
+	</widget>
+</widgets>

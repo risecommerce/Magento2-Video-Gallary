@@ -1,0 +1,51 @@
+<?php
+/** @var \Risecommerce\VideoGallery\Block\VideoBlock $block */
+ $data = $block->getVideoDetails();
+ $videoTitle  = $block->getTitle();
+?>
+<div class="breadcrumbs" style="padding:0px;">
+<ul class="items">
+    <li class="item home">
+        <a href="<?= $block->escapeUrl($block->getBaseUrl()); ?>"><?= /* @noEscape */ __('Home')?></a>
+    </li>
+    <?php  if ($videoTitle) { ?>
+    <li class="item">
+        <a href="<?= $block->escapeUrl($block->getRefer()); ?>"><?= /* @noEscape */ $videoTitle; ?></a>
+    </li>
+    <?php } ?>
+</ul>
+</div>
+<?php if (!empty($data['title'])) { ?>
+    <div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base" ><?= /* @noEscape */ $data['title']; ?></span>
+        </h1>
+    </div>
+<?php } ?>
+
+<?php $video_method = $block->escapeUrl($data['video_upload_method']); ?>
+<?php if ($video_method == 'youtube') { ?>
+    <center>
+        <div class="risecommerce-video-gallery-container"><iframe width="100%" height="615px" src="https://www.youtube.com/embed/<?= $block->escapeUrl($data['file']) ?>" allowfullscreen></iframe></div>
+    </center>
+<?php } elseif ($video_method == 'vimeo') { ?>
+    <center>
+        <div class="risecommerce-video-gallery-container">
+            <iframe width="100%" height="615px" src='https://player.vimeo.com/video/<?= $block->escapeUrl($data['file']) ?>?&byline=0' allowfullscreen></iframe>
+        </div>
+    </center>
+<?php } else { ?>
+<center>
+    <video width="100%" height="350px" controls allowfullscreen>
+        <source src="<?= $block->escapeUrl($block->getMediaUrl().$data['file']) ?>" type="video/mp4">
+    </video>
+</center>
+<?php } ?>
+
+<?php if (!empty($data['description'])) { ?>
+</br>
+</br>
+<div class="content">
+    <p><?= /* @noEscape */ $data['description']; ?></p>
+</div>
+<?php } ?>
