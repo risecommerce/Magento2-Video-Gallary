@@ -259,33 +259,30 @@ class Save extends \Magento\Backend\App\Action
      *
      * @return $errors
      */
-    private function _validatedParams($data)
-    {
+   private function _validatedParams($data)
+{
+    $errors = [];
 
-        $errors = [];
-
-        if (!isset($data['Video_Upload_Method']) || !\Zend_Validate::is($data['Video_Upload_Method'], 'NotEmpty')) {
-            $errors[] = __('%fieldName is a required field.', ['fieldName' => 'Video Upload Method']);
-        } else {
-            if ($data['Video_Upload_Method'] == 'youtube') {
-                if (!isset($data['youtube']) || !\Zend_Validate::is($data['youtube'], 'NotEmpty')) {
-                    $errors[] = __('%fieldName is a required field.', ['fieldName' => 'Youtube Method']);
-                }
+    // Validate Video_Upload_Method
+    if (empty($data['Video_Upload_Method'])) {
+        $errors[] = __('%fieldName is a required field.', ['fieldName' => 'Video Upload Method']);
+    } else {
+        if ($data['Video_Upload_Method'] === 'youtube') {
+            if (empty($data['youtube'])) {
+                $errors[] = __('%fieldName is a required field.', ['fieldName' => 'Youtube Method']);
             }
         }
-
-        if (!isset($data['position']) || !\Zend_Validate::is($data['position'], 'NotEmpty')) {
-            $errors[] = __('%fieldName is a required field.', ['fieldName' => 'position']);
-        }
-
-        if (!isset($data['position']) || !\Zend_Validate::is($data['position'], 'Digits')) {
-            $errors[] = __('%fieldName only accept digits.', ['fieldName' => 'position']);
-        }
-
-        if (empty($errors)) {
-            return false;
-        }
-
-        return $errors;
     }
+
+    // Validate position - required
+    if (!isset($data['position']) || $data['position'] === '') {
+        $errors[] = __('%fieldName is a required field.', ['fieldName' => 'position']);
+    } elseif (!ctype_digit(strval($data['position']))) {
+        // Validate position is digits only
+        $errors[] = __('%fieldName only accept digits.', ['fieldName' => 'position']);
+    }
+
+    return empty($errors) ? false : $errors;
+}
+
 }
